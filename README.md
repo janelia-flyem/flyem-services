@@ -43,6 +43,7 @@ is available for the user "noauth" will be used.
 
 * Review swagger documentation at /help
 * To login and get a token for application FOO: /login?redirect=/api/token/FOO
+* To see all the supported applications: /api/applications
 * Logout will require re-login for any service managed by this application: /logout
 
 ## Future Woek
