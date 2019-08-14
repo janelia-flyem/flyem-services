@@ -46,7 +46,7 @@ is available for the user "noauth" will be used.
 * To see all the supported applications: /api/applications
 * Logout will require re-login for any service managed by this application: /logout
 
-## Future Woek
+## Future Work
 
 * Enable the service to use cloud functions for authorization storage
 * Ability to launch the service as a cloud function
