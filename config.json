@@ -1,0 +1,17 @@
+{
+    "ssl-cert": "cert.pem",
+    "ssl-key": "key.pem",
+    "oauthclient-id": "something from google",
+    "oauthclient-secret": "secret from google",
+    "appsecret": "password for flyem services",
+    "hostname": "localhost",
+    "swagger-docs": "location for swagger director",
+    "log-file": "log.json",
+    "applications-secrets": {
+	"neuprint": "neuprint jwt passcode",
+	"dvid": "dvid jwt passcode"
+    },
+    "applications-auth": {
+    	"dvid": "authorizedvid.json"
+    }
+}
