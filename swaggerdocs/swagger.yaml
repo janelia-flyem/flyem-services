@@ -1,0 +1,77 @@
+info:
+  contact:
+    email: plazas@janelia.hhmi.org
+    name: Stephen Plaza
+  description: |-
+    REST interface to access flyem services authentication server.  This
+    service can create token for all registered applications.
+  title: flyem-services API
+  version: 0.1.0
+paths:
+  /api/help:
+    get:
+      description: YAML file containing swagger API documentation
+      operationId: helpyaml
+      responses:
+        "200":
+          description: successful operation
+      summary: swagger REST documentation
+      tags:
+      - apimeta
+  /login:
+    get:
+      description: Login user redirecting to profile
+      operationId: loginHandler
+      responses:
+        "302":
+          description: Redirect to /profile
+      summary: Login user
+      tags:
+      - user
+  /logout:
+    post:
+      description: Clears session cookie for the user
+      operationId: logoutHandler
+      responses:
+        "200":
+          description: successful operation
+      security:
+      - Bearer: []
+      summary: Logout user
+      tags:
+      - user
+  /profile:
+    get:
+      description: Returns user information
+      operationId: profileHandler
+      responses:
+        "200":
+          description: successful operation
+      security:
+      - Bearer: []
+      summary: Returns user information
+      tags:
+      - user
+  /token:
+    get:
+      description: JWT token should be passed in header for authentication
+      operationId: tokenHandler
+      responses:
+        "200":
+          description: successful operation
+      security:
+      - Bearer: []
+      summary: Returns JWT user bearer token
+      tags:
+      - user
+security:
+- Bearer: []
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    scopes:
+      admin: Admin scope
+      user: User scope
+    type: apiKey
+swagger: "2.0"
