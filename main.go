@@ -216,7 +216,7 @@ func main() {
 	// - Bearer: []
 	readGrp.GET("/applications", aa.listApps)
 
-	// swagger:operation GET /token/{app} application getAppToken
+	// swagger:operation GET /api/token/{app} application getAppToken
 	//
 	// Returns JWT for given application
 	//
