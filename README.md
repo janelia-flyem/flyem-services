@@ -21,7 +21,7 @@ google oauth.  This file should specify the different services supported and the
 service secret.  The service secret will be used to create JWT specific to that application.  Once
 the user is authenticated with flyem-services, the user can get tokens for any
 appliation by accessing /api/token/APPNAME.  The token can be decoded by the application
-specific secret.
+specific secret.  The JWT contains the email address, profile picture, expiration time, and authorization information.
 
 
 ## Authorization

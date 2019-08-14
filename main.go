@@ -196,8 +196,55 @@ func main() {
 	}
 
 	aa := AppAuth{options}
+
+	// swagger:operation GET /api/applications application listApps
+	//
+	// Gets applications supported
+	//
+	// List of applications that registered secrets with this service
+	//
+	// ---
+	// responses:
+	//   200:
+	//     description: "successful operation"
+	//     schema:
+	//       type: "array"
+	//       items:
+	//         type: "string"
+	//         description: "application names"
+	// security:
+	// - Bearer: []
 	readGrp.GET("/applications", aa.listApps)
 
+	// swagger:operation GET /token/{app} application getAppToken
+	//
+	// Returns JWT for given application
+	//
+	// If no authorization files are available, "noauth" is default for the user.
+	//
+	// ---
+	// parameters:
+	// - in: "path"
+	//   name: "app"
+	//   schema:
+	//     type: "string"
+	//   required: true
+	//   description: "application name"
+	// - in: "body"
+	//   name: "body"
+	//   required: true
+	//   schema:
+	//     type: "object"
+	//     required: ["token"]
+	//     properties:
+	//       token:
+	//         type: "string"
+	//         description: "JWT token"
+	// responses:
+	//   200:
+	//     description: "successful operation"
+	// security:
+	// - Bearer: []
 	readGrp.GET("/token/:app", aa.getAppToken)
 
 	// ?! add yaml documentation

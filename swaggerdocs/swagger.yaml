@@ -8,6 +8,23 @@ info:
   title: flyem-services API
   version: 0.1.0
 paths:
+  /api/applications:
+    get:
+      description: List of applications that registered secrets with this service
+      operationId: listApps
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            items:
+              description: application names
+              type: string
+            type: array
+      security:
+      - Bearer: []
+      summary: Gets applications supported
+      tags:
+      - application
   /api/help:
     get:
       description: YAML file containing swagger API documentation
@@ -64,6 +81,37 @@ paths:
       summary: Returns JWT user bearer token
       tags:
       - user
+  /token/{app}:
+    get:
+      description: If no authorization files are available, "noauth" is default for
+        the user.
+      operationId: getAppToken
+      parameters:
+      - description: application name
+        in: path
+        name: app
+        required: true
+        schema:
+          type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            token:
+              description: JWT token
+              type: string
+          required:
+          - token
+          type: object
+      responses:
+        "200":
+          description: successful operation
+      security:
+      - Bearer: []
+      summary: Returns JWT for given application
+      tags:
+      - application
 security:
 - Bearer: []
 securityDefinitions:
