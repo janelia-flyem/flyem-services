@@ -5,7 +5,7 @@
     "oauthclient-secret": "secret from google",
     "appsecret": "password for flyem services",
     "hostname": "localhost",
-    "swagger-docs": "location for swagger director",
+    "swagger-docs": "location for swagger yaml file",
     "log-file": "log.json",
     "applications-secrets": {
 	"neuprint": "neuprint jwt passcode",

@@ -192,7 +192,7 @@ func main() {
 	//   200:
 	//     description: "successful operation"
 	if options.SwaggerFile != "" {
-		e.Static("/api/help", options.SwaggerFile)
+		e.File("/api/help", options.SwaggerFile)
 	}
 
 	aa := AppAuth{options}
