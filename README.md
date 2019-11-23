@@ -16,7 +16,7 @@ installation:
 
     % flyem-services -p |PORTNUM| config.json
 
-See the example config.json file.  The user needs to register the application with
+See the example config.json.example file.  The user needs to register the application with
 google oauth.  This file should specify the different services supported and their private
 service secret.  The service secret will be used to create JWT specific to that application.  Once
 the user is authenticated with flyem-services, the user can get tokens for any
