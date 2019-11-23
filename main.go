@@ -127,8 +127,10 @@ func (aa AppAuth) getAppToken(c echo.Context) error {
 
 func main() {
 	var port = 15000
+	var proxyport = 15000
 	flag.Usage = customUsage
 	flag.IntVar(&port, "port", 15000, "port to start server")
+	flag.IntVar(&proxyport, "proxy-port", 0, "proxy port to start server")
 	flag.Parse()
 	if flag.NArg() != 1 {
 		flag.Usage()
@@ -157,6 +159,8 @@ func main() {
 	e.Pre(middleware.NonWWWRedirect())
 
 	var authorizer secure.Authorizer
+
+	secure.ProxyPort = proxyport
 
 	sconfig := secure.SecureConfig{
 		SSLCert:          options.CertPEM,
