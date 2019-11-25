@@ -29,6 +29,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"os/signal"
+	"strconv"
+	"syscall"
 	"time"
 
 	secure "github.com/janelia-flyem/echo-secure"
@@ -128,9 +131,11 @@ func (aa AppAuth) getAppToken(c echo.Context) error {
 func main() {
 	var port = 15000
 	var proxyport = 15000
+	var pidfile = ""
 	flag.Usage = customUsage
 	flag.IntVar(&port, "port", 15000, "port to start server")
 	flag.IntVar(&proxyport, "proxy-port", 0, "proxy port to start server")
+	flag.StringVar(&pidfile, "pid-file", "", "file for pid")
 	flag.Parse()
 	if flag.NArg() != 1 {
 		flag.Usage()
@@ -142,6 +147,35 @@ func main() {
 	if err != nil {
 		fmt.Print(err)
 		return
+	}
+
+	if pidfile != "" {
+		pid := os.Getpid()
+
+		// Open file using READ & WRITE permission.
+		fout, err := os.OpenFile(pidfile, os.O_WRONLY|os.O_CREATE, 0755)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		stopSig := make(chan os.Signal)
+		go func() {
+			for range stopSig {
+				os.Remove(pidfile)
+				os.Exit(0)
+			}
+		}()
+		signal.Notify(stopSig, os.Interrupt, os.Kill, syscall.SIGTERM)
+
+		// Write some text line-by-line to file.
+		_, err = fout.WriteString(strconv.Itoa(pid))
+		if err != nil {
+			fmt.Println(err)
+			fout.Close()
+			return
+		}
+		fout.Close()
 	}
 
 	// create echo web framework
