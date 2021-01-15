@@ -6,7 +6,7 @@ services.  Each service gets a unique and private JWT token.
 
 ## Installation
 
-Go must be installed and GOPATH must be set to a location to store the spplication.
+Go must be installed and GOPATH must be set to a location to store the application.
 
 installation:
 

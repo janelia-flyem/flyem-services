@@ -1,12 +1,12 @@
 {
-    "ssl-cert": "cert.pem",
-    "ssl-key": "key.pem",
+    "ssl-cert": "/app/certs/cert.pem",
+    "ssl-key": "/app/certs/key.pem",
     "oauthclient-id": "something from google",
     "oauthclient-secret": "secret from google",
     "appsecret": "password for flyem services",
     "hostname": "localhost",
-    "swagger-docs": "location for swagger yaml file",
-    "log-file": "log.json",
+    "swagger-docs": "/app/swaggerdocs",
+    "REMOVE_UPPERCASE_TO_ENABLElog-file": "log.json",
     "applications-secrets": {
 	"neuprint": "neuprint jwt passcode",
 	"dvid": "dvid jwt passcode"
