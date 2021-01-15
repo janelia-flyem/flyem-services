@@ -51,3 +51,13 @@ is available for the user "noauth" will be used.
 * Enable the service to use cloud functions for authorization storage
 * Ability to launch the service as a cloud function
 
+## Containerization
+
+* build the container
+```
+docker build . -t flyem-services:test
+```
+* run the container
+```
+docker run --rm -p15000:15000 -v "$(pwd)/config.json":/app/config/config.json flyem-services:test
+```
